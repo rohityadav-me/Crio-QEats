@@ -27,9 +27,9 @@ echo -e "Please note down location coordinates which we are populating data for 
 echo "If you think this is incorrect, check your coordinates.txt file."
 echo $'\e[32;1mPlease read this FAQ for more details - https://forum.crio.do/t/14751'
 
-cd ~/workspace
+cd ~/crio-local/workspace
 # Either clone or pull latest.
-QEATS_SHARED_RESOURCES="${HOME}/workspace/qeats_shared_resources"
+QEATS_SHARED_RESOURCES="${HOME}/crio-local/workspace/qeats_shared_resources"
 if [ ! -d $QEATS_SHARED_RESOURCES ]
 then
     git clone git@gitlab.crio.do:me_qeats_shared/qeats_shared_resources.git $QEATS_SHARED_RESOURCES
@@ -38,7 +38,7 @@ else
     git pull
 fi
 
-if systemctl status mongod | grep active > /dev/null; then
+if pgrep mongod > /dev/null; then
     echo "MongoDB is running..."
 else
     echo "MongoDB not running; Exiting"
